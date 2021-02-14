@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Basics2.Homework.DataAccess.MSSQL\Basics2.Homework.DataAccess.MSSQL.csproj" />
+    <ProjectReference Include="..\Basics2.Homework.Domain\Basics2.Homework.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
