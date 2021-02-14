@@ -23,5 +23,9 @@
     <ProjectReference Include="..\Basics2.Homework.DataAccess.MSSQL\Basics2.Homework.DataAccess.MSSQL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions" />
+  </ItemGroup>
+
 
 </Project>
