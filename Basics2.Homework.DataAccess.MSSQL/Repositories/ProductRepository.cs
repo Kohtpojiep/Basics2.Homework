@@ -32,7 +32,7 @@ namespace Basics2.Homework.DataAccess.MSSQL.Repositories
 
         public Product Get(int productId)
         {
-            var product = _context.Products.First(x => x.Id == productId);
+            var product = _context.Products.FirstOrDefault(x => x.Id == productId);
             var mappedProduct = _mapper.Map<Product>(product);
             return mappedProduct;
         }

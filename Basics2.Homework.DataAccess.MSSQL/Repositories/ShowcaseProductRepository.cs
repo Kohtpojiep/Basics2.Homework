@@ -29,7 +29,7 @@ namespace Basics2.Homework.DataAccess.MSSQL.Repositories
 
         public ShowcaseProduct Get(int showcaseProductId)
         {
-            var showcaseProduct = _context.ShowcaseProducts.First(x => x.Id == showcaseProductId);
+            var showcaseProduct = _context.ShowcaseProducts.FirstOrDefault(x => x.Id == showcaseProductId);
             var mappedShowcaseProduct = _mapper.Map<ShowcaseProduct>(showcaseProduct);
             return mappedShowcaseProduct;
         }

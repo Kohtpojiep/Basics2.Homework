@@ -7,6 +7,8 @@ namespace Basics2.Homework.Domain.Interfaces
 {
     public interface IShowcaseService
     {
+        Showcase GetShowcase(int showcaseId);
+        Showcase[] GetShowcases(int[] showcaseIds);
         Showcase CreateShowcase(Showcase showcase);
         Showcase[] CreateShowcases(Showcase[] showcases);
         void UpdateShowcase(Showcase showcase);

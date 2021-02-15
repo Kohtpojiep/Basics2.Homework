@@ -82,8 +82,6 @@ namespace Basics2.Homework.Api
                 });
             }
 
-
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

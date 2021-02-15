@@ -29,7 +29,7 @@ namespace Basics2.Homework.DataAccess.MSSQL.Repositories
 
         public Showcase Get(int showcaseId)
         {
-            var showcase = _context.Showcases.First(x => x.Id == showcaseId);
+            var showcase = _context.Showcases.FirstOrDefault(x => x.Id == showcaseId);
             var mappedShowcase = _mapper.Map<Showcase>(showcase);
             return mappedShowcase;
         }

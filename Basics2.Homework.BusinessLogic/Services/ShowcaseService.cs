@@ -26,8 +26,22 @@ namespace Basics2.Homework.BusinessLogic.Services
         4) В каждую созданную витрину можно добавить товар. При этом если товар не помещается, апи должен отвечать ошибкой.
         */
 
+        public Showcase GetShowcase(int showcaseId)
+        {
+            return _showcaseRepository.Get(showcaseId);
+        }
+
+        public Showcase[] GetShowcases(int[] showcaseIds)
+        {
+            List<Showcase> showcasesList = new List<Showcase>();
+            for (int i = 0; i < showcaseIds.Length; i++)
+            {
+                showcasesList.Add(_showcaseRepository.Get(showcaseIds[i]));
+            }
+            return showcasesList.ToArray();
+        }
         public Showcase CreateShowcase(Showcase showcase)
-        { 
+        {
             return _showcaseRepository.Add(showcase);
         }
 
@@ -48,6 +62,10 @@ namespace Basics2.Homework.BusinessLogic.Services
 
         public void RemoveShowcase(Showcase showcase)
         {
+            if (_showcaseProductRepository.Get(x => x.ShowcaseId == showcase.Id).Length != 0)
+            {
+                throw new Exception("В прилавке есть товары");
+            }
             _showcaseRepository.Remove(showcase);
         }
 
@@ -60,7 +78,6 @@ namespace Basics2.Homework.BusinessLogic.Services
                     throw new Exception("В одном из прилавков есть товары");
                 }
             }
-            
             _showcaseRepository.Remove(showcases);
         }
     }

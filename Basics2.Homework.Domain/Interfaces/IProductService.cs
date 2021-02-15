@@ -7,6 +7,8 @@ namespace Basics2.Homework.Domain.Interfaces
 {
     public interface IProductService
     {
+        Product GetProduct(int productId);
+        Product[] GetProducts(int[] productIds);
         Product CreateProduct(Product product);
         Product[] CreateProducts(Product[] products);
         void UpdateProduct(Product product);
