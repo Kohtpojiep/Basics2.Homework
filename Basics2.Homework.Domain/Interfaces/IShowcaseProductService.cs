@@ -7,13 +7,13 @@ namespace Basics2.Homework.Domain.Interfaces
 {
     public interface IShowcaseProductService
     {
-        ShowcaseProduct GetShowcaseProduct(int showcaseProductId);
-        ShowcaseProduct[] GetShowcaseProducts(int[] showcaseProductIds);
-        ShowcaseProduct CreateShowcaseProduct(ShowcaseProduct showcaseProduct);
-        ShowcaseProduct[] CreateShowcaseProducts(ShowcaseProduct[] showcaseProducts);
-        void UpdateShowcaseProduct(ShowcaseProduct showcaseProduct);
-        void UpdateShowcaseProducts(ShowcaseProduct[] showcaseProducts);
-        void RemoveShowcaseProduct(ShowcaseProduct showcaseProduct);
-        void RemoveShowcaseProducts(ShowcaseProduct[] showcaseProducts);
+        ShowcaseProduct Get(int showcaseProductId);
+        ShowcaseProduct[] GetAll();
+        ShowcaseProduct Create(ShowcaseProduct showcaseProduct);
+        ShowcaseProduct[] Create(ShowcaseProduct[] showcaseProducts);
+        void Update(ShowcaseProduct showcaseProduct);
+        void Update(ShowcaseProduct[] showcaseProducts);
+        void Remove(ShowcaseProduct showcaseProduct);
+        void Remove(ShowcaseProduct[] showcaseProducts);
     }
 }

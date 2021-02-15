@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Basics2.Homework.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Basics2.Homework.Api.Controllers.ProductController.#ctor(Basics2.Homework.Domain.Interfaces.IProductService)">
+            <summary>
+            А где это просматривается?...
+            </summary>
+            <param name="productService"></param>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ProductController.Get">
+            <summary>
+            Вывод всех продуктов, находящихся в базе данных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ProductController.Get(System.Int32)">
+            <summary>
+            Вывод продукта, который обладает данным идентификатором
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ProductController.Post(Basics2.Homework.Domain.Models.Product)">
+            <summary>
+            Добавление продукта в базу данных
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ProductController.Put(Basics2.Homework.Domain.Models.Product)">
+            <summary>
+            Обновление данных продукта в базе данных
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ProductController.Delete(Basics2.Homework.Domain.Models.Product)">
+            <summary>
+            Удаление продукта из базы данных
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseController.Get">
+            <summary>
+            Вывод всех прилавков, находящихся в базе данных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseController.Get(System.Int32)">
+            <summary>
+            Вывод прилавка, который обладает данным идентификатором
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseController.Post(Basics2.Homework.Domain.Models.Showcase)">
+            <summary>
+            Добавление прилавка в базу данных
+            </summary>
+            <param name="showcase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseController.Put(Basics2.Homework.Domain.Models.Showcase)">
+            <summary>
+            Обновление данных прилавка в базе данных
+            </summary>
+            <param name="showcase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseController.Delete(Basics2.Homework.Domain.Models.Showcase)">
+            <summary>
+            Удаление прилавка из базы данных
+            </summary>
+            <param name="showcase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseProductController.#ctor(Basics2.Homework.Domain.Interfaces.IShowcaseProductService)">
+            <summary>
+            А где это просматривается?...
+            </summary>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseProductController.Get">
+            <summary>
+            Вывод всех продуктов из прилавков, находящихся в базе данных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseProductController.Get(System.Int32)">
+            <summary>
+            Вывод информации о продукте прилавка, который обладает данным идентификатором
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseProductController.Post(Basics2.Homework.Domain.Models.ShowcaseProduct)">
+            <summary>
+            Добавление продукта на прилавок в базу данных
+            </summary>
+            <param name="showcaseProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseProductController.Put(Basics2.Homework.Domain.Models.ShowcaseProduct)">
+            <summary>
+            Обновление данных продукта на прилавке в базе данных
+            </summary>
+            <param name="showcaseProduct"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Basics2.Homework.Api.Controllers.ShowcaseProductController.Delete(Basics2.Homework.Domain.Models.ShowcaseProduct)">
+            <summary>
+            Удаление продукта из прилавка
+            </summary>
+            <param name="showcaseProduct"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

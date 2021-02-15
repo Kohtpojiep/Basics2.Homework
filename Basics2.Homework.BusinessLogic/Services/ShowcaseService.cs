@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Basics2.Homework.Domain.Interfaces;
 using Basics2.Homework.Domain.Models;
+using Basics2.Homework.Domain.Validation;
 
 namespace Basics2.Homework.BusinessLogic.Services
 {
@@ -26,42 +27,63 @@ namespace Basics2.Homework.BusinessLogic.Services
         4) В каждую созданную витрину можно добавить товар. При этом если товар не помещается, апи должен отвечать ошибкой.
         */
 
-        public Showcase GetShowcase(int showcaseId)
+        private bool ValidateShowcase(Showcase showcase)
         {
+            ShowcaseValidation validation = new ShowcaseValidation();
+            if (validation.Validate(showcase).IsValid == false)
+                throw new Exception("Один из объектов не прошёл валидацию");
+            return true;
+        }
+
+        private bool ValidateShowcases(Showcase[] showcases)
+        {
+            ShowcaseValidation validation = new ShowcaseValidation();
+            for (int i = 0; i < showcases.Length; i++)
+            {
+                if (validation.Validate(showcases[i]).IsValid == false)
+                    throw new Exception("Один из объектов не прошёл валидацию");
+            }
+            return true;
+        }
+
+        public Showcase Get(int showcaseId)
+        {
+            if (showcaseId < 1)
+                throw new Exception("Неккоректный идентификатор");
             return _showcaseRepository.Get(showcaseId);
         }
 
-        public Showcase[] GetShowcases(int[] showcaseIds)
+        public Showcase[] GetAll()
         {
-            List<Showcase> showcasesList = new List<Showcase>();
-            for (int i = 0; i < showcaseIds.Length; i++)
-            {
-                showcasesList.Add(_showcaseRepository.Get(showcaseIds[i]));
-            }
-            return showcasesList.ToArray();
+            return _showcaseRepository.GetAll();
         }
-        public Showcase CreateShowcase(Showcase showcase)
+        public Showcase Create(Showcase showcase)
         {
+            ValidateShowcase(showcase);
             return _showcaseRepository.Add(showcase);
         }
 
-        public Showcase[] CreateShowcases(Showcase[] showcases)
+        public Showcase[] Create(Showcase[] showcases)
         {
+            ValidateShowcases(showcases);
             return _showcaseRepository.Add(showcases);
         }
 
-        public void UpdateShowcase(Showcase showcase)
+        public void Update(Showcase showcase)
         {
+            ValidateShowcase(showcase);
             _showcaseRepository.Update(showcase);
         }
 
-        public void UpdateShowcases(Showcase[] showcases)
+        public void Update(Showcase[] showcases)
         {
+            ValidateShowcases(showcases);
             _showcaseRepository.Update(showcases);
         }
 
-        public void RemoveShowcase(Showcase showcase)
+        public void Remove(Showcase showcase)
         {
+            ValidateShowcase(showcase);
             if (_showcaseProductRepository.Get(x => x.ShowcaseId == showcase.Id).Length != 0)
             {
                 throw new Exception("В прилавке есть товары");
@@ -69,8 +91,9 @@ namespace Basics2.Homework.BusinessLogic.Services
             _showcaseRepository.Remove(showcase);
         }
 
-        public void RemoveShowcases(Showcase[] showcases)
+        public void Remove(Showcase[] showcases)
         {
+            ValidateShowcases(showcases);
             for (int i = 0; i < showcases.Length; i++)
             {
                 if (_showcaseProductRepository.Get(x => x.ShowcaseId == showcases[i].Id).Length != 0)

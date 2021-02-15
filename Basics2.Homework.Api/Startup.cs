@@ -1,3 +1,6 @@
+using System.IO;
+using System.Linq;
+using Basics2.Homework.BusinessLogic.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +33,9 @@ namespace Basics2.Homework.Api
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IShowcaseRepository, ShowcaseRepository>();
             services.AddTransient<IShowcaseProductRepository, ShowcaseProductRepository>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IShowcaseService, ShowcaseService>();
+            services.AddTransient<IShowcaseProductService, ShowcaseProductService>();
 
             services.AddDbContext<ShopContext>(x =>
                 x.UseSqlServer(Configuration.GetConnectionString("ConnectionDbContext")));
@@ -38,6 +44,8 @@ namespace Basics2.Homework.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basics2 API", Version = "v1" });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                c.IncludeXmlComments("Basics2.Homework.Api.xml");
             }); 
         }
 
@@ -50,7 +58,7 @@ namespace Basics2.Homework.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelBooking.Api v1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Basics2.Api v1");
                 });
                 app.UseReDoc(c =>
                 {
@@ -81,7 +89,7 @@ namespace Basics2.Homework.Api
                     });
                 });
             }
-
+ 
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -7,13 +7,13 @@ namespace Basics2.Homework.Domain.Interfaces
 {
     public interface IShowcaseService
     {
-        Showcase GetShowcase(int showcaseId);
-        Showcase[] GetShowcases(int[] showcaseIds);
-        Showcase CreateShowcase(Showcase showcase);
-        Showcase[] CreateShowcases(Showcase[] showcases);
-        void UpdateShowcase(Showcase showcase);
-        void UpdateShowcases(Showcase[] showcases);
-        void RemoveShowcase(Showcase showcase);
-        void RemoveShowcases(Showcase[] showcases);
+        Showcase Get(int showcaseId);
+        Showcase[] GetAll();
+        Showcase Create(Showcase showcase);
+        Showcase[] Create(Showcase[] showcases);
+        void Update(Showcase showcase);
+        void Update(Showcase[] showcases);
+        void Remove(Showcase showcase);
+        void Remove(Showcase[] showcases);
     }
 }

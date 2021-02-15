@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\dmass\Desktop\Basics2.Homework\Basics2.Homework.Api\Basics2.Homework.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
@@ -20,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Basics2.Homework.BusinessLogic\Basics2.Homework.BusinessLogic.csproj" />
     <ProjectReference Include="..\Basics2.Homework.DataAccess.MSSQL\Basics2.Homework.DataAccess.MSSQL.csproj" />
   </ItemGroup>
 

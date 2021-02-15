@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Basics2.Homework.Domain.Interfaces;
 using Basics2.Homework.Domain.Models;
@@ -13,37 +12,34 @@ namespace Basics2.Homework.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ShowcaseController : ControllerBase
     {
-        private readonly IProductService _productService;
-        /// <summary>
-        /// А где это просматривается?...
-        /// </summary>
-        /// <param name="productService"></param>
-        public ProductController(IProductService productService)
+        private readonly IShowcaseService _showcaseService;
+
+        public ShowcaseController(IShowcaseService showcaseService)
         {
-            _productService = productService;
+            _showcaseService = showcaseService;
         }
 
         /// <summary>
-        /// Вывод всех продуктов, находящихся в базе данных
+        /// Вывод всех прилавков, находящихся в базе данных
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<Product> Get()
+        public ActionResult<Showcase> Get()
         {
-            var product = _productService.GetAll();
-            if (product == null)
+            var showcase = _showcaseService.GetAll();
+            if (showcase == null)
                 return NotFound();
-            return new ObjectResult(product);
+            return new ObjectResult(showcase);
         }
         /// <summary>
-        /// Вывод продукта, который обладает данным идентификатором
+        /// Вывод прилавка, который обладает данным идентификатором
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("/{id}")]
-        public ActionResult<Product> Get(int id)
+        public ActionResult<Showcase> Get(int id)
         {
             if (id < 1)
                 ModelState.AddModelError("Error", "Неверный идентификатор");
@@ -51,53 +47,53 @@ namespace Basics2.Homework.Api.Controllers
             if (ModelState.IsValid == false)
                 return BadRequest(ModelState);
 
-            var product = _productService.Get(id);
-            if (product == null)
+            var showcase = _showcaseService.Get(id);
+            if (showcase == null)
                 return NotFound();
-            return new ObjectResult(product);
+            return new ObjectResult(showcase);
         }
 
         /// <summary>
-        /// Добавление продукта в базу данных
+        /// Добавление прилавка в базу данных
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="showcase"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult<Product> Post(Product product)
+        public ActionResult<Showcase> Post(Showcase showcase)
         {
-            var validation = new ProductValidation().Validate(product);
+            var validation = new ShowcaseValidation().Validate(showcase);
             if (validation.IsValid == false)
             {
                 return BadRequest(validation.Errors);
             }
-            Product addedProduct;
+            Showcase addedShowcase;
             try
             {
-                addedProduct = _productService.Create(product);
+                addedShowcase = _showcaseService.Create(showcase);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-            return new ObjectResult(addedProduct);
+            return new ObjectResult(addedShowcase);
         }
 
         /// <summary>
-        /// Обновление данных продукта в базе данных
+        /// Обновление данных прилавка в базе данных
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="showcase"></param>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult Put(Product product)
+        public ActionResult Put(Showcase showcase)
         {
-            var validation = new ProductValidation().Validate(product);
+            var validation = new ShowcaseValidation().Validate(showcase);
             if (validation.IsValid == false)
             {
                 return BadRequest();
             }
             try
             {
-                _productService.Update(product);
+                _showcaseService.Update(showcase);
             }
             catch (Exception e)
             {
@@ -107,21 +103,21 @@ namespace Basics2.Homework.Api.Controllers
         }
 
         /// <summary>
-        /// Удаление продукта из базы данных
+        /// Удаление прилавка из базы данных
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="showcase"></param>
         /// <returns></returns>
         [HttpDelete]
-        public ActionResult Delete(Product product)
+        public ActionResult Delete(Showcase showcase)
         {
-            var validation = new ProductValidation().Validate(product);
+            var validation = new ShowcaseValidation().Validate(showcase);
             if (validation.IsValid == false)
             {
                 return BadRequest();
             }
             try
             {
-                _productService.Remove(product);
+                _showcaseService.Remove(showcase);
             }
             catch (Exception e)
             {
