@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Basics2.Homework.Domain.Exceptions;
 using Basics2.Homework.Domain.Interfaces;
 using Basics2.Homework.Domain.Models;
 using Basics2.Homework.Domain.Validation;

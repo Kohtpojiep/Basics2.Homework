@@ -20,6 +20,14 @@ namespace Basics2.Homework.DataAccess.MSSQL.Repositories
             _mapper = mapper;
         }
 
+        // Получение заполненного объема прилавка
+        public int GetCurrentFullnessOfShowcase(int showcaseId)
+        {
+            var showcaseProducts = _context.ShowcaseProducts.Where(x => x.ShowcaseId == showcaseId);
+            int result = showcaseProducts.Sum(y => (short)(y.Product.Volume * y.ProductCount));
+            return result;
+        }
+
         public ShowcaseProduct[] GetAll()
         {
             var showcaseProducts = _context.ShowcaseProducts.ToArray();
@@ -42,7 +50,7 @@ namespace Basics2.Homework.DataAccess.MSSQL.Repositories
             }
             var mappedExpression = _mapper.Map<Expression<Func<Entities.ShowcaseProduct, bool>>>(predicate);
             var showcaseProducts = _context.ShowcaseProducts.Where(mappedExpression).ToArray();
-            
+
             var mappedShowcaseProducts = _mapper.Map<ShowcaseProduct[]>(showcaseProducts);
             return mappedShowcaseProducts;
         }

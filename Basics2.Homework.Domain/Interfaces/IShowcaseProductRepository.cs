@@ -7,6 +7,7 @@ namespace Basics2.Homework.Domain.Interfaces
 {
     public interface IShowcaseProductRepository
     {
+        int GetCurrentFullnessOfShowcase(int showcaseId);
         ShowcaseProduct[] GetAll();
         ShowcaseProduct Get(int showcaseProductId);
         ShowcaseProduct[] Get(Expression<Func<ShowcaseProduct, bool>> predicate);

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using Basics2.Homework.Domain.Exceptions;
 using Basics2.Homework.Domain.Interfaces;
 using Basics2.Homework.Domain.Models;
 using Basics2.Homework.Domain.Validation;
@@ -31,7 +31,7 @@ namespace Basics2.Homework.BusinessLogic.Services
         {
             ShowcaseValidation validation = new ShowcaseValidation();
             if (validation.Validate(showcase).IsValid == false)
-                throw new Exception("Один из объектов не прошёл валидацию");
+                throw new ValidationException("Один из объектов не прошёл валидацию");
             return true;
         }
 
@@ -41,7 +41,7 @@ namespace Basics2.Homework.BusinessLogic.Services
             for (int i = 0; i < showcases.Length; i++)
             {
                 if (validation.Validate(showcases[i]).IsValid == false)
-                    throw new Exception("Один из объектов не прошёл валидацию");
+                    throw new ValidationException("Один из объектов не прошёл валидацию");
             }
             return true;
         }
@@ -49,7 +49,7 @@ namespace Basics2.Homework.BusinessLogic.Services
         public Showcase Get(int showcaseId)
         {
             if (showcaseId < 1)
-                throw new Exception("Неккоректный идентификатор");
+                throw new ValidationException("Неккоректный идентификатор");
             return _showcaseRepository.Get(showcaseId);
         }
 
@@ -86,7 +86,7 @@ namespace Basics2.Homework.BusinessLogic.Services
             ValidateShowcase(showcase);
             if (_showcaseProductRepository.Get(x => x.ShowcaseId == showcase.Id).Length != 0)
             {
-                throw new Exception("В прилавке есть товары");
+                throw new ServiceException("В прилавке есть товары");
             }
             _showcaseRepository.Remove(showcase);
         }
@@ -98,7 +98,7 @@ namespace Basics2.Homework.BusinessLogic.Services
             {
                 if (_showcaseProductRepository.Get(x => x.ShowcaseId == showcases[i].Id).Length != 0)
                 {
-                    throw new Exception("В одном из прилавков есть товары");
+                    throw new ServiceException("В одном из прилавков есть товары");
                 }
             }
             _showcaseRepository.Remove(showcases);

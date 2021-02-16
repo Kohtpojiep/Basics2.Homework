@@ -34,7 +34,7 @@ namespace Basics2.Homework.BusinessLogic.Tests
             var service = new ProductService(productRepositoryMock.Object);
 
             // act
-            var result = service.CreateProduct(inputProduct);
+            var result = service.Create(inputProduct);
 
             //assert
             Mock.Verify(productRepositoryMock);

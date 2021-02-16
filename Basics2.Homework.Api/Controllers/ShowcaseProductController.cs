@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Basics2.Homework.Domain.Exceptions;
 using Basics2.Homework.Domain.Interfaces;
 using Basics2.Homework.Domain.Models;
 using Basics2.Homework.Domain.Validation;
@@ -74,9 +75,13 @@ namespace Basics2.Homework.Api.Controllers
             {
                 addedShowcaseProduct = _showcaseProductService.Create(showcaseProduct);
             }
-            catch (Exception e)
+            catch (ServiceException ex)
             {
-                return BadRequest(e);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
             return new ObjectResult(addedShowcaseProduct);
         }

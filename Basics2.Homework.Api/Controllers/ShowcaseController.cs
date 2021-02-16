@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Basics2.Homework.Domain.Exceptions;
 using Basics2.Homework.Domain.Interfaces;
 using Basics2.Homework.Domain.Models;
 using Basics2.Homework.Domain.Validation;
@@ -70,6 +71,10 @@ namespace Basics2.Homework.Api.Controllers
             try
             {
                 addedShowcase = _showcaseService.Create(showcase);
+            }
+            catch (ServiceException e)
+            {
+                return BadRequest(e.Message);
             }
             catch (Exception e)
             {

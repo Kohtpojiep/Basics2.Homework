@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Basics2.Homework.Domain.Exceptions;
 using Basics2.Homework.Domain.Interfaces;
 using Basics2.Homework.Domain.Models;
 using Basics2.Homework.Domain.Validation;
@@ -19,7 +20,7 @@ namespace Basics2.Homework.BusinessLogic.Services
         {
             ProductValidation validation = new ProductValidation();
             if (validation.Validate(product).IsValid == false)
-                throw new Exception("Один из объектов не прошёл валидацию");
+                throw new ValidationException("Один из объектов не прошёл валидацию");
             return true;
         }
 
@@ -29,7 +30,7 @@ namespace Basics2.Homework.BusinessLogic.Services
             for (int i = 0; i < products.Length; i++)
             {
                 if (validation.Validate(products[i]).IsValid == false)
-                    throw new Exception("Один из объектов не прошёл валидацию");
+                    throw new ValidationException("Один из объектов не прошёл валидацию");
             }
             return true;
         }
@@ -37,7 +38,7 @@ namespace Basics2.Homework.BusinessLogic.Services
         public Product Get(int productId)
         {
             if (productId < 1)
-                throw new Exception("Неккоректный идентификатор");
+                throw new ValidationException("Неккоректный идентификатор");
             return _productRepository.Get(productId);
         }
 
